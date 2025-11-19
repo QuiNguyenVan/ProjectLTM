@@ -4,9 +4,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Trang Đăng Ký</title>
+<link rel="stylesheet" href="Public/Assets/CSS/Style.css"> 
+<style>
+    /* CSS RIÊNG CỦA REGISTER */
+    .form-container {
+        width: 350px; /* Có thể làm rộng hơn một chút do có nhiều trường hơn */
+    }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #007bff; /* Màu riêng cho nút Đăng Ký */
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    .info-link-section a {
+        color: #5cb85c; /* Màu riêng cho link Đăng nhập */
+    }
+</style>
 </head>
 <body>
+
+<div class="form-container">
+    <h2>Đăng Ký Tài Khoản Mới</h2>
+    
+    <form action="process_registration.jsp" method="post">
+        
+        <label for="reg_username">Tên đăng nhập:</label>
+        <input type="text" id="reg_username" name="username" required>
+        
+        <label for="reg_email">Email:</label>
+        <input type="email" id="reg_email" name="email" required>
+        
+        <label for="reg_password">Mật khẩu:</label>
+        <input type="password" id="reg_password" name="password" required>
+        
+        <label for="reg_confirm_password">Xác nhận Mật khẩu:</label>
+        <input type="password" id="reg_confirm_password" name="confirm_password" required>
+        
+        <input type="submit" value="Đăng Ký">
+        
+    </form>
+    
+    <div class="info-link-section">
+        Đã có tài khoản? <a href="Login.jsp">Đăng nhập</a>
+    </div>
+</div>
 
 </body>
 </html>

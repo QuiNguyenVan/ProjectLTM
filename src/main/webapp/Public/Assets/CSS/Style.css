@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/* styles.css */
+
+/* ------------------------------------- */
+/* Global Styles (Áp dụng cho mọi trang) */
+/* ------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* ------------------------------------- */
+/* Form Container (Dùng chung cho cả Login và Register) */
+/* ------------------------------------- */
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Có thể điều chỉnh riêng ở từng file nếu cần */
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------------- */
+/* Input & Label Styles */
+/* ------------------------------------- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], 
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Giảm một chút để gọn hơn */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+/* ------------------------------------- */
+/* Link Styles (Đăng ký/Đăng nhập) */
+/* ------------------------------------- */
+.info-link-section {
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.info-link-section a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.info-link-section a:hover {
+    text-decoration: underline;
+}
