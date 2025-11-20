@@ -39,9 +39,15 @@
     }
     .tab-nav {
         display: flex;
-        justify-content: center;
+        /* THAY ĐỔI: Căn lề trái/phải để thêm nút Lịch sử */
+        justify-content: space-between; 
+        align-items: center; /* Căn giữa theo chiều dọc */
         margin-bottom: 20px;
         border-bottom: 2px solid #ccc;
+        padding-bottom: 5px; 
+    }
+    .tab-group { /* Nhóm các nút chuyển tab */
+        display: flex;
     }
     .tab-nav button {
         background-color: transparent;
@@ -57,6 +63,23 @@
         color: #007bff;
         border-bottom: 3px solid #007bff;
         font-weight: bold;
+    }
+    /* BỔ SUNG CSS CHO NÚT LỊCH SỬ */
+    .history-button {
+        padding: 10px 15px;
+        background-color: #ffc107; /* Màu vàng */
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none; /* Dùng cho thẻ <a> */
+        display: inline-block;
+        line-height: 1;
+    }
+    .history-button:hover {
+        background-color: #e0a800;
     }
     /* Input Area */
     textarea {
@@ -115,11 +138,17 @@
 <div class="main-content">
     
     <div class="tab-nav">
-        <button id="tab-text" class="active">Nhập Văn Bản</button>
-        <button id="tab-file">Tải Lên File</button>
+        <div class="tab-group">
+            <button id="tab-text" class="active">Nhập Văn Bản</button>
+            <button id="tab-file">Tải Lên File</button>
+        </div>
+        
+        <a href="TaskHistoryController" class="history-button">
+            Xem Lịch Sử Kiểm Tra
+        </a>
     </div>
     
-    <form action="check_result.jsp" method="post" enctype="multipart/form-data">
+    <form action="CheckSubmitController" method="post" enctype="multipart/form-data"> 
 
         <div id="text-input">
             <label for="text_content">Dán văn bản của bạn vào đây:</label>
