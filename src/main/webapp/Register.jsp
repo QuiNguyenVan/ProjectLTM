@@ -39,13 +39,13 @@
 <div class="form-container">
     <h2>Đăng Ký Tài Khoản Mới</h2>
     
-    <form action="process_registration.jsp" method="post">
+    <form action="RegisterServlet" method="post">
         
-        <label for="reg_username">Tên đăng nhập:</label>
-        <input type="text" id="reg_username" name="username"> <label for="reg_email">Email:</label>
-        <input type="email" id="reg_email" name="email"> <label for="reg_password">Mật khẩu:</label>
-        <input type="password" id="reg_password" name="password"> <label for="reg_confirm_password">Xác nhận Mật khẩu:</label>
-        <input type="password" id="reg_confirm_password" name="confirm_password"> <input type="submit" value="Đăng Ký">
+        <label for="reg_username">Tên đăng nhập:</label><input type="text" id="reg_username" name="username"> 
+       <!--   <label for="reg_email">Email:</label> <input type="email" id="reg_email" name="email"> -->
+        <label for="reg_password">Mật khẩu:</label> <input type="password" id="reg_password" name="password"> 
+        <label for="reg_confirm_password">Xác nhận Mật khẩu:</label><input type="password" id="reg_confirm_password" name="confirm_password"> 
+        <input type="submit" value="Đăng Ký">
         
     </form>
     
@@ -53,7 +53,6 @@
         Đã có tài khoản? <a href="Login.jsp">Đăng nhập</a>
     </div>
 </div>
-
 <script src="Public/Assets/JS/Auth/Register.js"></script>
 
 </body>

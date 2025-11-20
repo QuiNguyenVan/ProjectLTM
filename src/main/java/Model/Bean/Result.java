@@ -8,4 +8,34 @@ public class Result {
     private double similarityPercent;
     private String matchedTemplate;     // có thể để null
     private Timestamp checkedAt;
+	public int getResultId() {
+		return resultId;
+	}
+	public void setResultId(int resultId) {
+		this.resultId = resultId;
+	}
+	public int getTaskId() {
+		return taskId;
+	}
+	public void setTaskId(int taskId) {
+		this.taskId = taskId;
+	}
+	public double getSimilarityPercent() {
+		return similarityPercent;
+	}
+	public void setSimilarityPercent(double similarityPercent) {
+		this.similarityPercent = similarityPercent;
+	}
+	public String getMatchedTemplate() {
+		return matchedTemplate;
+	}
+	public void setMatchedTemplate(String matchedTemplate) {
+		this.matchedTemplate = matchedTemplate;
+	}
+	public Timestamp getCheckedAt() {
+		return checkedAt;
+	}
+	public void setCheckedAt(Timestamp checkedAt) {
+		this.checkedAt = checkedAt;
+	}
 }

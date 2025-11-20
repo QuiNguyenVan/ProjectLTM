@@ -7,4 +7,28 @@ public class Template {
     private String templateName;
     private String content;          // LONGTEXT → String
     private Timestamp createdAt;     // DATETIME → Timestamp
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTemplateName() {
+		return templateName;
+	}
+	public void setTemplateName(String templateName) {
+		this.templateName = templateName;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
 }

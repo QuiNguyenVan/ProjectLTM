@@ -39,7 +39,7 @@
 <div class="form-container">
     <h2>Đăng Nhập Hệ Thống</h2>
     
-    <form action="Welcome.jsp" method="post">
+    <form action="LoginServlet" method="post">
         
         <label for="username">Tên đăng nhập:</label>
         <input type="text" id="username" name="username"> 
