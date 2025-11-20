@@ -28,6 +28,10 @@
     .info-link-section a {
         color: #007bff; /* Màu riêng cho link Đăng ký */
     }
+    /* Thêm style cho thông báo lỗi */
+    .error-message { 
+        /* đã được định nghĩa trong JS, nhưng có thể thêm style nâng cao tại đây */
+    }
 </style>
 </head>
 <body>
@@ -35,13 +39,13 @@
 <div class="form-container">
     <h2>Đăng Nhập Hệ Thống</h2>
     
-    <form action="Welcome.jsp" method="post">
+    <form action="LoginServlet" method="post">
         
         <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username"> 
         
         <label for="password">Mật khẩu:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password">
         
         <input type="submit" value="Đăng Nhập">
         
@@ -52,6 +56,8 @@
         <a href="Register.jsp">Đăng ký ngay!</a>
     </div>
 </div>
+
+<script src="Public/Assets/JS/Auth/Login.js"></script>
 
 </body>
 </html>

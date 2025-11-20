@@ -51,8 +51,8 @@
 <div class="welcome-box">
     <h1>Chào Mừng, <%= username %>! 👋</h1>
     <p>Bạn đã đăng nhập thành công vào hệ thống.</p>
-    
-    <a href="Login.jsp" class="logout-link">Đăng Xuất</a>
+    <a href="HomeServlet" >Kiểm tra đạo văn ở đây!</a>
+    <a href="LogoutServlet" class="logout-link">Đăng Xuất</a>
 </div>
 
 </body>

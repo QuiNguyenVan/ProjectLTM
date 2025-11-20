@@ -9,11 +9,11 @@
 <style>
     /* CSS RIÊNG CỦA REGISTER */
     .form-container {
-        width: 350px; /* Có thể làm rộng hơn một chút do có nhiều trường hơn */
+        width: 350px; 
     }
     input[type="submit"] {
         width: 100%;
-        background-color: #007bff; /* Màu riêng cho nút Đăng Ký */
+        background-color: #007bff; 
         color: white;
         padding: 10px;
         border: none;
@@ -26,7 +26,11 @@
         background-color: #0056b3;
     }
     .info-link-section a {
-        color: #5cb85c; /* Màu riêng cho link Đăng nhập */
+        color: #5cb85c; 
+    }
+    /* Thêm style cho thông báo lỗi */
+    .error-message { 
+        /* Nếu bạn có style chung trong Style.css thì không cần định nghĩa lại */
     }
 </style>
 </head>
@@ -35,20 +39,12 @@
 <div class="form-container">
     <h2>Đăng Ký Tài Khoản Mới</h2>
     
-    <form action="process_registration.jsp" method="post">
+    <form action="RegisterServlet" method="post">
         
-        <label for="reg_username">Tên đăng nhập:</label>
-        <input type="text" id="reg_username" name="username" required>
-        
-        <label for="reg_email">Email:</label>
-        <input type="email" id="reg_email" name="email" required>
-        
-        <label for="reg_password">Mật khẩu:</label>
-        <input type="password" id="reg_password" name="password" required>
-        
-        <label for="reg_confirm_password">Xác nhận Mật khẩu:</label>
-        <input type="password" id="reg_confirm_password" name="confirm_password" required>
-        
+        <label for="reg_username">Tên đăng nhập:</label><input type="text" id="reg_username" name="username"> 
+       <!--   <label for="reg_email">Email:</label> <input type="email" id="reg_email" name="email"> -->
+        <label for="reg_password">Mật khẩu:</label> <input type="password" id="reg_password" name="password"> 
+        <label for="reg_confirm_password">Xác nhận Mật khẩu:</label><input type="password" id="reg_confirm_password" name="confirm_password"> 
         <input type="submit" value="Đăng Ký">
         
     </form>
@@ -57,6 +53,7 @@
         Đã có tài khoản? <a href="Login.jsp">Đăng nhập</a>
     </div>
 </div>
+<script src="Public/Assets/JS/Auth/Register.js"></script>
 
 </body>
 </html>
