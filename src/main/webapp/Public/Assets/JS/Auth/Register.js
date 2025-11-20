@@ -58,19 +58,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 3. Hàm hiển thị thông báo lỗi (Dùng lại style từ Login)
-    function displayError(inputElement, message) {
-        let errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.style.color = 'red';
-        errorDiv.style.fontSize = '0.9em';
-        errorDiv.style.marginTop = '-10px';
-        errorDiv.style.marginBottom = '10px';
-        errorDiv.textContent = message;
+	function displayError(inputElement, message) {
+	       	let errorDiv = document.createElement('div');
+	        errorDiv.className = 'error-message';
+	        // Style CSS có thể được định nghĩa trong file Style.css chung
+	        errorDiv.style.color = 'red'; 
+	        errorDiv.style.fontSize = '0.9em';
+	        errorDiv.style.marginTop = '-10px';
+	        errorDiv.style.marginBottom = '10px';
+	        errorDiv.textContent = message;
 
-        inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
-        // Chỉ focus vào trường lỗi đầu tiên
-        if (isValid) inputElement.focus();
-    }
+	        // Chèn thông báo lỗi ngay sau trường input
+	        inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
+	        inputElement.focus();
+	}
     
     // 4. Hàm xóa thông báo lỗi cũ
     function clearErrorMessages() {
