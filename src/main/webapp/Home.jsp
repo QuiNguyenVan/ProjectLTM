@@ -119,7 +119,7 @@
         <button id="tab-file">Tải Lên File</button>
     </div>
     
-    <form action="check_result.jsp" method="post" enctype="multipart/form-data">
+    <form action="CheckPlagiarismServlet" method="post" enctype="multipart/form-data">
 
         <div id="text-input">
             <label for="text_content">Dán văn bản của bạn vào đây:</label>
