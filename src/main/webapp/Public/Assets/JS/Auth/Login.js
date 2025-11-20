@@ -1,27 +1,31 @@
-// Login.jsp
-
-// login_validate.js
+// Login.js
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Lấy form và các trường input
-    const loginForm = document.querySelector('form[action="Welcome.jsp"]');
+    
+    // 1. Lấy form bằng ID (Cách tối ưu hơn)
+    const loginForm = document.getElementById('loginForm');
+    
+    // Lấy các trường input
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
-
-    // 2. Thêm trình lắng nghe sự kiện 'submit' cho form
+	
+    // 2. Thêm trình lắng nghe sự kiện 'submit'
     if (loginForm) {
         loginForm.addEventListener('submit', function(event) {
-            // Ngăn form gửi đi mặc định để thực hiện xác thực bằng JS
+            
+            // Ngăn form gửi đi mặc định
             event.preventDefault(); 
             
-            // Xóa thông báo lỗi cũ (nếu có)
+            // Xóa thông báo lỗi cũ
             clearErrorMessages();
 
             // Thực hiện xác thực
             if (validateLoginForm()) {
-                // Nếu xác thực thành công, cho phép form gửi đi
-                // Lưu ý: Trong thực tế, bạn sẽ gửi yêu cầu AJAX đến server thay vì gửi form
+                // Nếu xác thực thành công, cho phép form gửi đến LoginServlet
+                console.log("Xác thực thành công. Đang gửi form...");
                 this.submit(); 
+            } else {
+                console.log("Xác thực thất bại.");
             }
         });
     }
@@ -32,24 +36,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const usernameValue = usernameInput.value.trim();
         const passwordValue = passwordInput.value.trim();
 
-        // Kiểm tra Tên đăng nhập
+        // --- Kiểm tra Tên đăng nhập ---
         if (usernameValue === "") {
             displayError(usernameInput, 'Tên đăng nhập không được để trống.');
             isValid = false;
-        } 
-        // Ví dụ: Kiểm tra độ dài tối thiểu
-        else if (usernameValue.length < 4) {
+        } else if (usernameValue.length < 4) {
              displayError(usernameInput, 'Tên đăng nhập phải có ít nhất 4 ký tự.');
              isValid = false;
         }
 
-        // Kiểm tra Mật khẩu
+        // --- Kiểm tra Mật khẩu ---
         if (passwordValue === "") {
             displayError(passwordInput, 'Mật khẩu không được để trống.');
             isValid = false;
-        } 
-        // Ví dụ: Kiểm tra độ dài tối thiểu
-        else if (passwordValue.length < 6) {
+        } else if (passwordValue.length < 6) {
              displayError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự.');
              isValid = false;
         }
@@ -59,10 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 4. Hàm hiển thị thông báo lỗi
     function displayError(inputElement, message) {
-        // Tạo một phần tử div để hiển thị lỗi
         let errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
-        errorDiv.style.color = 'red';
+        // Style CSS có thể được định nghĩa trong file Style.css chung
+        errorDiv.style.color = 'red'; 
         errorDiv.style.fontSize = '0.9em';
         errorDiv.style.marginTop = '-10px';
         errorDiv.style.marginBottom = '10px';
@@ -81,4 +81,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-// End login.jsp
+// End login.js

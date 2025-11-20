@@ -39,7 +39,7 @@
 <div class="form-container">
     <h2>Đăng Ký Tài Khoản Mới</h2>
     
-    <form action="RegisterServlet" method="post">
+    <form id="registerForm" action="RegisterServlet" method="post">
         
         <label for="reg_username">Tên đăng nhập:</label><input type="text" id="reg_username" name="username"> 
        <!--   <label for="reg_email">Email:</label> <input type="email" id="reg_email" name="email"> -->
@@ -53,7 +53,7 @@
         Đã có tài khoản? <a href="Login.jsp">Đăng nhập</a>
     </div>
 </div>
-<script src="Public/Assets/JS/Auth/Register.js"></script>
+<script src="Public/Assets/JS/Auth/Register.js?v=1.2"></script>
 
 </body>
 </html>

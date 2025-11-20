@@ -4,15 +4,13 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // 1. Lấy form và các trường input (Sử dụng ID đã định nghĩa trong Register.jsp)
-    const registerForm = document.querySelector('form[action="process_registration.jsp"]');
+    const registerForm = document.getElementById('registerForm');
+	
+	// 2. Lấy các trường input
     const usernameInput = document.getElementById('reg_username');
-    const emailInput = document.getElementById('reg_email');
     const passwordInput = document.getElementById('reg_password');
     const confirmPasswordInput = document.getElementById('reg_confirm_password');
     
-    // Regex đơn giản để kiểm tra định dạng email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (registerForm) {
         registerForm.addEventListener('submit', function(event) {
             // Ngăn form gửi đi mặc định
@@ -36,13 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const usernameValue = usernameInput.value.trim();
         if (usernameValue.length < 4) {
             displayError(usernameInput, 'Tên đăng nhập phải có ít nhất 4 ký tự.');
-            isValid = false;
-        }
-
-        // --- Kiểm tra Email ---
-        const emailValue = emailInput.value.trim();
-        if (!emailRegex.test(emailValue)) {
-            displayError(emailInput, 'Email không hợp lệ.');
             isValid = false;
         }
 

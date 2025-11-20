@@ -39,17 +39,17 @@
 <div class="form-container">
     <h2>Đăng Nhập Hệ Thống</h2>
     
-    <form action="LoginServlet" method="post">
-        
-        <label for="username">Tên đăng nhập:</label>
-        <input type="text" id="username" name="username"> 
-        
-        <label for="password">Mật khẩu:</label>
-        <input type="password" id="password" name="password">
-        
-        <input type="submit" value="Đăng Nhập">
-        
-    </form>
+    <form id="loginForm" action="LoginServlet" method="post">
+    
+    	<label for="username">Tên đăng nhập:</label>
+    	<input type="text" id="username" name="username"> 
+    
+    	<label for="password">Mật khẩu:</label>
+    	<input type="password" id="password" name="password">
+    
+    	<input type="submit" value="Đăng Nhập">
+    
+	</form>
     
     <div class="info-link-section">
         Chưa có tài khoản? 
@@ -57,7 +57,7 @@
     </div>
 </div>
 
-<script src="Public/Assets/JS/Auth/Login.js"></script>
+<script src="Public/Assets/JS/Auth/Login.js?v=1.1"></script>
 
 </body>
 </html>
