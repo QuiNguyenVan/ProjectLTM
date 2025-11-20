@@ -28,20 +28,4 @@ public class PlagiarismDAO {
         }
         return list;
     }
-
-    // Lưu kết quả kiểm tra vào DB
-    public void saveResult(Result r) {
-        try {
-            Connection conn = DBConnection.getConnection();
-            String sql = "INSERT INTO result(taskId, similarityPercent, matchedTemplate, checkedAt) VALUES(?,?,?,?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, r.getTaskId());
-            ps.setDouble(2, r.getSimilarityPercent());
-            ps.setString(3, r.getMatchedTemplate());
-            ps.setTimestamp(4, r.getCheckedAt());
-            ps.executeUpdate();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

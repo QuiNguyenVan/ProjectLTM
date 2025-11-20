@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import Model.DAO.PlagiarismDAO;
+
 import Model.Utils.FingerPrinting;
 import Model.Bean.Template;
 import Model.Bean.Result;
@@ -18,9 +19,7 @@ public class PlagiarismBO {
 
         double maxSimilarity = 0;
         String matchedTemplate = null;
-        System.out.println(inputContent);
         for(Template t : templates) {
-        	System.out.println(t.getContent());
         	
             double sim = similarity(inputContent, t.getContent());
             if(sim > maxSimilarity) {
@@ -34,9 +33,6 @@ public class PlagiarismBO {
         r.setSimilarityPercent(maxSimilarity);
         r.setMatchedTemplate(matchedTemplate);
         r.setCheckedAt(new Timestamp(System.currentTimeMillis()));
-
-        // Lưu kết quả vào DB
-//        dao.saveResult(r);
         return r;
     }
     private FingerPrinting fp = new FingerPrinting(5, 4);
