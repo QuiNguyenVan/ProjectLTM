@@ -70,5 +70,62 @@ public class AdminTemplateDAO {
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
 			try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
 		}
-	}      
+	}     
+    
+    public AdminTemplate getTemplateById(int templateId) {
+		String SELECT_TEMPLATE_BY_ID = "SELECT id, templateName, content FROM template WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.getConnection();
+			if (conn == null) {
+				System.err.println("AdminTemplateDAO.getTemplateById: Unable to obtain DB connection (null)");
+				return null; // propagate null so caller knows there was an error
+			}
+			preparedStatement = conn.prepareStatement(SELECT_TEMPLATE_BY_ID);
+			preparedStatement.setInt(1, templateId);
+			rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				String name = rs.getString("templateName");
+				String content = rs.getString("content");
+				return new AdminTemplate(templateId, name, content);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+			return null;
+		} finally {
+			// Close resources safely
+			try { if (rs != null) rs.close(); } catch (Exception ex) { /* ignore */ }
+			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
+			try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
+		}
+		return null; // Template not found
+	}
+    
+    public boolean updateTemplateById(int templateId, String templateName, String content) {
+    	String UPDATE_TEMPLATE_SQL = "UPDATE template SET templateName = ?, content = ? WHERE id = ?";
+    	Connection conn = null;
+    	PreparedStatement preparedStatement = null;
+    	try {
+			conn = DBConnection.getConnection();
+			if (conn == null) {
+				System.err.println("AdminTemplateDAO.updateTemplateById: Unable to obtain DB connection (null)");
+				return false; // propagate false so caller knows there was an error
+			}
+			preparedStatement = conn.prepareStatement(UPDATE_TEMPLATE_SQL);
+			preparedStatement.setString(1, templateName);
+			preparedStatement.setString(2, content);
+			preparedStatement.setInt(3, templateId);				
+			int affectedRows = preparedStatement.executeUpdate();					
+			return affectedRows > 0;
+		} catch (SQLException e) {
+			e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+			return false;
+		} finally {					// Close resources safely
+			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
+			try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
+		}
+    }
 }

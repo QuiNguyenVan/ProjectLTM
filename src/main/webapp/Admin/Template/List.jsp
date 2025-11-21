@@ -20,7 +20,7 @@
 <body>
 
     <div class="container">
-        <h3 class="inner-title">Danh Sách Các Mẫu Bản Ghi</h3>
+        <h3 class="inner-title">Danh Sách Các Mẫu</h3>
         
         <%-- Hiển thị thông báo lỗi (Nếu có, dùng EL) --%>
         <% if (request.getAttribute("errorMessage") != null) { %>
@@ -62,8 +62,13 @@
                     <td><%= contentSummary %></td>
                     <td style="text-align: center;" class="actions-cell">
                         <%-- 5. Đường dẫn action dùng kết hợp EL và Expression --%>
-                        <a style="color: #2B2D3B" href="${pageContext.request.contextPath}/Admin/Template/Edit?id=<%= template.getId() %>" class="action-edit"><i style="font-weight: 500" class="fa-regular fa-pen-to-square"></i></a>
-                        <a style="color: #2B2D3B" href="${pageContext.request.contextPath}/Admin/Template/Delete?id=<%= template.getId() %>" class="action-delete" 
+                        <form method="get" action="${pageContext.request.contextPath}/AdminEditTemplateServlet" style="display: inline;" target="_self">
+						    <input type="hidden" name="templateId" value="<%= template.getId() %>">						    
+						    <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;" class="action-edit">
+						        <i style="font-weight: 500" class="fa-regular fa-pen-to-square"></i>
+						    </button>
+						</form>
+                        <a style="color: #2B2D3B" href="${pageContext.request.contextPath}/Admin/Template/Delete?templateId=<%= template.getId() %>" class="action-delete" 
                             onclick="return confirm('Bạn có chắc chắn muốn xóa mẫu này?');"><i style="font-weight: 500" class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
