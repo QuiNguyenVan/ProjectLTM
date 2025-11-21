@@ -6,18 +6,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Danh Sách Template</title>
+    <title>Danh Sách Mẫu</title>
     
     <%-- Icon --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <%-- Base css --%>
+    <link href="${pageContext.request.contextPath}/Public/Admin/Assets/CSS/Style.css?v0" rel="stylesheet" type="text/css">
+    
     <%-- Dùng EL cho đường dẫn CSS (Cách làm tốt) --%>
-    <link href="${pageContext.request.contextPath}/Public/Admin/Assets/CSS/Template/ListTemplate.css?v1" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/Public/Admin/Assets/CSS/Template/ListTemplate.css?v0" rel="stylesheet" type="text/css">
 </head>
 <body>
 
     <div class="container">
-        <h3>Danh Sách Các Mẫu Bản Ghi</h3>
+        <h3 class="inner-title">Danh Sách Các Mẫu Bản Ghi</h3>
         
         <%-- Hiển thị thông báo lỗi (Nếu có, dùng EL) --%>
         <% if (request.getAttribute("errorMessage") != null) { %>

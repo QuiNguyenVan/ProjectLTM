@@ -224,7 +224,7 @@
           <li class="nav-item"><a class="nav-link" aria-controls="sidebarArticle" aria-expanded="false" role="button" data-bs-toggle="collapse" href="#sidebarArticle"><i class="iconoir-journal-page menu-icon"></i><span>Quản Lý Mẫu</span></a>
             <div class="collapse" id="sidebarArticle">
               <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link" href="./Dashboard/Dashboard.jsp" target="main">Tạo Mẫu</a></li>
+                <li class="nav-item"><a class="nav-link" href="./Template/Create.jsp" target="main">Tạo Mẫu</a></li>
                 <!-- end nav-item-->
                 <li class="nav-item">
                 	<form class="nav-link" action="../AdminListTemplateServlet" method="get" target="main">

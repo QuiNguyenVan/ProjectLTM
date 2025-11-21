@@ -10,4 +10,7 @@ public class AdminTemplateBO {
 	public List<AdminTemplate> retrieveAllTemplates() {
         return templateDAO.getAllTemplates();
     }
+	public boolean createTemplate(String templateName, String content) {
+		return templateDAO.insertTemplate(templateName, content);
+	}
 }

@@ -46,5 +46,29 @@ public class AdminTemplateDAO {
         }
         return templates;
     }
-        
+    
+    public boolean insertTemplate(String templateName, String content) {
+		String INSERT_TEMPLATE_SQL = "INSERT INTO template (templateName, content) VALUES (?, ?)";
+		Connection conn = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			conn = DBConnection.getConnection();
+			if (conn == null) {
+				System.err.println("AdminTemplateDAO.insertTemplate: Unable to obtain DB connection (null)");
+				return false; // propagate false so caller knows there was an error
+			}
+			preparedStatement = conn.prepareStatement(INSERT_TEMPLATE_SQL);
+			preparedStatement.setString(1, templateName);
+			preparedStatement.setString(2, content);
+			int affectedRows = preparedStatement.executeUpdate();
+			return affectedRows > 0;
+		} catch (SQLException e) {
+			e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+			return false;
+		} finally {
+			// Close resources safely
+			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
+			try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
+		}
+	}      
 }
