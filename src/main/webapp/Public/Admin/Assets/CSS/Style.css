@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+/* --- Thiết lập cơ bản (Reset & Font) --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6; /* Nền xám nhạt */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- Container chung --- */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Tiêu đề (Headings) --- */
+h1 {
+    color: #007bff; /* Màu xanh dương chủ đạo */
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+/* --- Buttons và Links chung --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+.btn-primary { /* Ví dụ: Nút Tạo mới */
+    background-color: #28a745; /* Màu xanh lá cây */
+    color: white;
+    border: 1px solid #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #1e7e34;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary { /* Ví dụ: Nút Hủy bỏ */
+    background-color: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* --- Kiểu Form (Áp dụng cho Create.jsp/Edit.jsp) --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+/* --- Kiểu Bảng (Áp dụng cho List.jsp) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.data-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.data-table tbody tr:hover {
+    background-color: #e9ecef; /* Hiệu ứng hover nhẹ */
+}
+
+/* --- Thao tác trong bảng (Actions) --- */
+.actions-cell a {
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.action-edit { color: #ffc107; } /* Màu vàng */
+.action-copy { color: #17a2b8; } /* Màu xanh ngọc */
+.action-delete { color: #dc3545; } /* Màu đỏ */
+.action-delete:hover { color: #c82333; }

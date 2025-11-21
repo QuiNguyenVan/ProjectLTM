@@ -1,0 +1,50 @@
+package Model.DAO;
+
+import Model.Bean.AdminTemplate;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AdminTemplateDAO {
+    private static final String SELECT_ALL_TEMPLATES = "SELECT id, templateName, content FROM template";
+
+    public List<AdminTemplate> getAllTemplates() {
+        List<AdminTemplate> templates = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        try {
+            conn = DBConnection.getConnection();
+            if (conn == null) {
+                System.err.println("AdminTemplateDAO.getAllTemplates: Unable to obtain DB connection (null)");
+                return null; // propagate null so caller knows there was an error
+            }
+            preparedStatement = conn.prepareStatement(SELECT_ALL_TEMPLATES);
+            rs = preparedStatement.executeQuery();
+
+            boolean hasAny = false;
+            while (rs.next()) {
+                hasAny = true;
+                int id = rs.getInt("id");
+                String name = rs.getString("templateName");
+                String content = rs.getString("content");
+                // Ánh xạ dữ liệu từ ResultSet sang Bean
+                AdminTemplate template = new AdminTemplate(id, name, content);
+                templates.add(template);
+            }
+            if (!hasAny) {
+                System.out.println("AdminTemplateDAO.getAllTemplates: Query executed, but no rows returned.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+            return null;
+        } finally {
+            // Close resources safely
+            try { if (rs != null) rs.close(); } catch (Exception ex) { /* ignore */ }
+            try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
+            try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
+        }
+        return templates;
+    }
+        
+}
