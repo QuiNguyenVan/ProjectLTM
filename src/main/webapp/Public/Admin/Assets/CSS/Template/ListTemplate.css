@@ -8,16 +8,16 @@
             padding: 30px;
         }
         .container {
-            max-width: 900px;
+            max-width: 100vw;
             margin: auto;
             background: #fff;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-            color: #007bff;
-            border-bottom: 3px solid #007bff;
+        h3 {
+            color: #2B2D3B;
+            border-bottom: 3px solid #F4F6F9;
             padding-bottom: 10px;
         }
         table {
@@ -29,15 +29,21 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            color: #2B2D3B;
         }
         th {
-            background-color: #007bff;
-            color: white;
-            text-transform: uppercase;
+            background-color: #F4F6F9;
+            font-size: 16px;
+            font-weight: 500;
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        /* Áp dụng style hover */
+	    input[type="submit"]:hover {
+	        /* Đổi màu chữ khi hover */
+	        color: #22C55E; 
+	    }
         .actions a {
             margin-right: 10px;
             text-decoration: none;

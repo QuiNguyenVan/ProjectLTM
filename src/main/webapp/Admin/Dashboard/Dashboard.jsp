@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>Admin New File JSP</h1>
-    <form action="../../AdminListTemplateServlet" method="get">
-        <input type="submit" value="Create Template" />
-    </form>
+
 </body>
-</html> 
+</html>

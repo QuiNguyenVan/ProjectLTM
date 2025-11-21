@@ -8,13 +8,16 @@
     <meta charset="UTF-8">
     <title>Danh Sách Template</title>
     
+    <%-- Icon --%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <%-- Dùng EL cho đường dẫn CSS (Cách làm tốt) --%>
-    <link href="${pageContext.request.contextPath}/Public/Admin/Assets/CSS/Template/ListTemplate.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/Public/Admin/Assets/CSS/Template/ListTemplate.css?v1" rel="stylesheet" type="text/css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Danh Sách Các Mẫu Bản Ghi</h1>
+        <h3>Danh Sách Các Mẫu Bản Ghi</h3>
         
         <%-- Hiển thị thông báo lỗi (Nếu có, dùng EL) --%>
         <% if (request.getAttribute("errorMessage") != null) { %>
@@ -54,12 +57,11 @@
                     <td><%= template.getId() %></td>
                     <td><%= template.getTemplateName() %></td>
                     <td><%= contentSummary %></td>
-                    <td class="actions-cell">
+                    <td style="text-align: center;" class="actions-cell">
                         <%-- 5. Đường dẫn action dùng kết hợp EL và Expression --%>
-                        <a href="${pageContext.request.contextPath}/Admin/Template/Edit?id=<%= template.getId() %>" class="action-edit">Sửa</a>
-                        <a href="${pageContext.request.contextPath}/Admin/Template/Copy?id=<%= template.getId() %>" class="action-copy">Chép</a>
-                        <a href="${pageContext.request.contextPath}/Admin/Template/Delete?id=<%= template.getId() %>" class="action-delete" 
-                            onclick="return confirm('Bạn có chắc chắn muốn xóa mẫu này?');">Xóa bỏ</a>
+                        <a style="color: #2B2D3B" href="${pageContext.request.contextPath}/Admin/Template/Edit?id=<%= template.getId() %>" class="action-edit"><i style="font-weight: 500" class="fa-regular fa-pen-to-square"></i></a>
+                        <a style="color: #2B2D3B" href="${pageContext.request.contextPath}/Admin/Template/Delete?id=<%= template.getId() %>" class="action-delete" 
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa mẫu này?');"><i style="font-weight: 500" class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
                 
