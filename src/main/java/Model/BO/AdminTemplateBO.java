@@ -23,4 +23,8 @@ public class AdminTemplateBO {
 	public boolean updateTemplate(int templateId, String templateName, String content) {
 		return templateDAO.updateTemplateById(templateId, templateName, content);
 	}
+	
+	public boolean deleteTemplateById(int templateId) {
+		return templateDAO.deleteTemplateById(templateId);
+	}
 }

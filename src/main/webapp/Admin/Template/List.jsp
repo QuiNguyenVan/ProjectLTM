@@ -68,8 +68,12 @@
 						        <i style="font-weight: 500" class="fa-regular fa-pen-to-square"></i>
 						    </button>
 						</form>
-                        <a style="color: #2B2D3B" href="${pageContext.request.contextPath}/Admin/Template/Delete?templateId=<%= template.getId() %>" class="action-delete" 
-                            onclick="return confirm('Bạn có chắc chắn muốn xóa mẫu này?');"><i style="font-weight: 500" class="fa-solid fa-trash-can"></i></a>
+						<form method="post" action="${pageContext.request.contextPath}/AdminDeleteTemplateServlet" style="display: inline;" target="_self">
+						    <input type="hidden" name="templateId" value="<%= template.getId() %>">						    
+						    <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;" class="action-delete">
+						        <i style="font-weight: 500" class="fa-solid fa-trash-can"></i>
+						    </button>
+						</form>
                     </td>
                 </tr>
                 

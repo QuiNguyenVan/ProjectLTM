@@ -227,12 +227,12 @@
                 <li class="nav-item"><a class="nav-link" href="./Template/Create.jsp" target="main">Tạo Mẫu</a></li>
                 <!-- end nav-item-->
                 <li class="nav-item">
-                	<form class="nav-link" action="../AdminListTemplateServlet" method="get" target="main">
-					    <input style="border: none; background-color: white; padding: 0px" type="submit" value="Xem Danh Sách Mẫu" />
+                	<form id="menuForm" class="nav-link" action="../AdminListTemplateServlet" method="get" target="main">
+					    <input id="submitBtn" style="border: none; background-color: white; padding: 0px" type="submit" value="Xem Danh Sách Mẫu" />
 					</form>
                 </li>
                 <!-- end nav-item-->
-                <li class="nav-item"><a class="nav-link" href="./Template/List.jsp" target="main">Danh Mục Mẫu</a></li>
+                <li class="nav-item"><a class="nav-link" href="./Dashboard/Dashboard.jsp" target="main">Danh Mục Mẫu</a></li>
                 <!-- end nav-item-->
               </ul>
               <!-- end nav-->
