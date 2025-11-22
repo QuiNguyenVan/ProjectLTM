@@ -7,7 +7,7 @@
 <title>Kiểm Tra Đạo Văn - Trang Chủ</title>
 <link rel="stylesheet" href="Public/Assets/CSS/Style.css">
 <style>
-    /* ... (CSS giữ nguyên) ... */
+     /* ... (CSS giữ nguyên) ... */
     /* Bổ sung/Ghi đè style cho Home.jsp */
     body {
         /* Đặt body về kiểu hiển thị bình thường cho trang lớn */
@@ -39,9 +39,15 @@
     }
     .tab-nav {
         display: flex;
-        justify-content: center;
+        /* THAY ĐỔI: Căn lề trái/phải để thêm nút Lịch sử */
+        justify-content: space-between; 
+        align-items: center; /* Căn giữa theo chiều dọc */
         margin-bottom: 20px;
         border-bottom: 2px solid #ccc;
+        padding-bottom: 5px; 
+    }
+    .tab-group { /* Nhóm các nút chuyển tab */
+        display: flex;
     }
     .tab-nav button {
         background-color: transparent;
@@ -57,6 +63,23 @@
         color: #007bff;
         border-bottom: 3px solid #007bff;
         font-weight: bold;
+    }
+    /* BỔ SUNG CSS CHO NÚT LỊCH SỬ */
+    .history-button {
+        padding: 10px 15px;
+        background-color: #ffc107; /* Màu vàng */
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none; /* Dùng cho thẻ <a> */
+        display: inline-block;
+        line-height: 1;
+    }
+    .history-button:hover {
+        background-color: #e0a800;
     }
     /* Input Area */
     textarea {
@@ -115,10 +138,11 @@
 <div class="main-content">
     
     <div class="tab-nav">
-        <button id="tab-text" class="active">Nhập Văn Bản</button>
+        <div class="tab-group"><button id="tab-text" class="active">Nhập Văn Bản</button>
         <button id="tab-file">Tải Lên File</button>
+        </div>
+        <a href="TaskHistoryServlet" class="history-button">Xem lịch sư kiểm tra</a>
     </div>
-    
     <form action="CheckPlagiarismServlet" method="post" enctype="multipart/form-data">
 
         <div id="text-input">
@@ -127,7 +151,7 @@
         </div>
 
         <div id="file-upload" class="hidden">
-            <label for="file_input">Chọn file để kiểm tra (hỗ trợ .doc, .docx, .txt, .pdf):</label>
+            <label for="file_input">Chọn file để kiểm tra (hỗ trợ .txt):</label>
             <div class="file-upload-area"> 
                 <p>Kéo và thả file vào đây, hoặc nhấn để chọn file</p>
                 <input type="file" id="file_input" name="file" accept=".doc,.docx,.txt,.pdf">

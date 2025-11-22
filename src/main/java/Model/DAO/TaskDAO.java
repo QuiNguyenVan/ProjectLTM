@@ -69,7 +69,7 @@ public class TaskDAO {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
-            if (rs.next()) {
+        	while(rs.next()) {
                 Task task = new Task();
                 task.setTaskId(rs.getInt("taskId"));
                 task.setUserId(rs.getInt("userId"));
@@ -126,4 +126,30 @@ public class TaskDAO {
         }
         return null;
     }
+
+	public List<Task> getTasksByUserId(int userID) {
+		List<Task> list= new ArrayList<Task>();
+		String sql = "SELECT * FROM task WHERE userId = userID Order by createdAt DESC";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Task task = new Task();
+                task.setTaskId(rs.getInt("taskId"));
+                task.setUserId(rs.getInt("userId"));
+                task.setFileName(rs.getString("fileName"));
+                task.setFileContent(rs.getString("fileContent"));
+                task.setCreatedAt(rs.getTimestamp("createdAt"));
+                task.setStatus(rs.getString("status"));
+                list.add(task);
+            }
+
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+		
+	}
 }

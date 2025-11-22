@@ -17,6 +17,12 @@ import Worker.PlagiarismWorker;
 public class CheckPlagiarismServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session=request.getSession();
+    	if(session ==null || session.getAttribute("user") ==null)
+		{
+			response.sendRedirect("Login.jsp");
+			return;
+		}
     	int userId = ((User)(request.getSession().getAttribute("user"))).getId();
         Part filePart = request.getPart("file");
         String fileName = (filePart != null && filePart.getSize() > 0) ? filePart.getSubmittedFileName() : null;

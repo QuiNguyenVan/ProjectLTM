@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import Model.Bean.Result;
 import Model.Bean.Task;
 import Model.DAO.PlagiarismDAO;
 import Model.DAO.TaskDAO;
@@ -37,7 +38,6 @@ public class TaskBO {
         task.setStatus("processing");
         int taskId=taskDao.createTask(task);
         task.setTaskId(taskId);
-        
         if (worker != null) {
             worker.addTask(task);
         }
@@ -53,5 +53,8 @@ public class TaskBO {
     {
     	return taskDao.getTaskById(taskId).getStatus();
     }
+	public List<Task> getTasksByUserId(int userId) {
+		return taskDao.getTasksByUserId(userId);
+	}
     
 }

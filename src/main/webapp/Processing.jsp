@@ -37,5 +37,6 @@
     <h1>Đang xử lý kiểm tra đạo văn...</h1>
     <p id="status" class="status">Vui lòng chờ trong giây lát.</p>
     <div id="result" class="result"></div>
+    <input type="button" onclick=history.back() value="Quay lại">
 </body>
 </html>
