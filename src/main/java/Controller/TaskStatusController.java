@@ -8,12 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.sql.Timestamp; // Cần thiết để xử lý thời gian
 
 import Model.BO.TaskBO;
 import Model.Bean.User;
 import Model.Bean.Task;
 
+/**
+ * Servlet này dùng để phục vụ các yêu cầu AJAX Polling từ TaskHistory.jsp.
+ * Nó trả về danh sách Task mới nhất dưới dạng JSON.
+ */
 @WebServlet("/TaskStatusController")
 public class TaskStatusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +34,7 @@ public class TaskStatusController extends HttpServlet {
         HttpSession session = request.getSession(false); 
         
         if (session == null || session.getAttribute("user") == null) {
+            // Trả về lỗi 401 nếu chưa đăng nhập, vì đây là API endpoint
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Phiên đăng nhập không hợp lệ.");
             return;
         }
@@ -39,10 +43,10 @@ public class TaskStatusController extends HttpServlet {
         int userId = user.getId(); 
 
         try {
-            // 2. Lấy danh sách Task
+            // 2. Lấy danh sách Task (Gọi TaskBO -> TaskDAO)
             List<Task> taskList = taskBO.getTasksByUserId(userId);
             
-            // 3. Cấu hình HTTP Response là JSON
+            // 3. Cấu hình HTTP Response là JSON và UTF-8
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             
@@ -63,20 +67,20 @@ public class TaskStatusController extends HttpServlet {
     
     /**
      * Phương thức thủ công chuyển đổi List<Task> sang chuỗi JSON.
+     * Chuyển đổi thành các thuộc tính cần thiết: taskId, fileName, createdAt (dạng timestamp), status.
      */
     private String convertTaskListToJson(List<Task> taskList) {
         if (taskList == null || taskList.isEmpty()) {
             return "[]";
         }
         
-        // Sử dụng StringBuilder để xây dựng chuỗi hiệu quả hơn
         StringBuilder sb = new StringBuilder();
         sb.append("[");
 
         for (int i = 0; i < taskList.size(); i++) {
             Task task = taskList.get(i);
             
-            // Lấy thời gian dưới dạng mili giây (timestamp) để JS dễ dàng xử lý
+            // Lấy thời gian dưới dạng mili giây (timestamp) để JavaScript dễ xử lý
             long createdAtTime = (task.getCreatedAt() != null) ? task.getCreatedAt().getTime() : 0; 
             
             // Bắt đầu đối tượng Task JSON
@@ -98,12 +102,12 @@ public class TaskStatusController extends HttpServlet {
     }
     
     /**
-     * Phương thức đơn giản để escape các ký tự đặc biệt trong chuỗi JSON (như dấu nháy kép).
-     * Cần thiết để ngăn lỗi cú pháp JSON nếu fileName chứa ".
+     * Phương thức đơn giản để escape dấu ngoặc kép trong chuỗi.
      */
     private String escapeJson(String s) {
         if (s == null) return "";
-        return s.replace("\"", "\\\""); // Escape dấu ngoặc kép
+        // Thay thế " thành \"
+        return s.replace("\"", "\\\""); 
     }
 
 
