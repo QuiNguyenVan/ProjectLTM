@@ -16,6 +16,7 @@
     
     <%-- Dùng EL cho đường dẫn CSS (Cách làm tốt) --%>
     <link href="${pageContext.request.contextPath}/Public/Admin/Assets/CSS/Template/ListTemplate.css?v0" rel="stylesheet" type="text/css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
 
@@ -62,6 +63,26 @@
                     <td><%= contentSummary %></td>
                     <td style="text-align: center;" class="actions-cell">
                         <%-- 5. Đường dẫn action dùng kết hợp EL và Expression --%>
+                        <!-- Button trigger modal -->
+						<i class="fa-regular fa-eye" style="border: none; background-color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal<%= template.getId() %>"></i>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal<%= template.getId() %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        <%= template.getContent() %>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
                         <form method="get" action="${pageContext.request.contextPath}/AdminEditTemplateServlet" style="display: inline;" target="_self">
 						    <input type="hidden" name="templateId" value="<%= template.getId() %>">						    
 						    <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;" class="action-edit">
@@ -96,5 +117,7 @@
             </tbody>
         </table>
     </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
