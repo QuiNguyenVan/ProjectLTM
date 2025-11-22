@@ -12,8 +12,8 @@ public class AdminTemplateBO {
         return templateDAO.getAllTemplates();
     }
 	
-	public boolean createTemplate(String templateName, String content) {
-		return templateDAO.insertTemplate(templateName, content);
+	public boolean createTemplate(int userId , String templateName, String content) {
+		return templateDAO.insertTemplate(userId ,templateName, content);
 	}
 	
 	public AdminTemplate getTemplateById(int templateId) {

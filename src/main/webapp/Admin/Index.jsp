@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <!-- App favicon-->
-    <link href="admin/assets/images/favicon.ico" rel="shortcut icon">
+    <link href="admin/assets/images/T-Solution.png" rel="shortcut icon">
     <!-- App css-->
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link type="text/css" rel="stylesheet" href="admin/assets/css/bootstrap.min.css">
@@ -203,13 +203,13 @@
     <!-- leftbar-tab-menu-->
     <div class="startbar d-print-none">
   <!-- start brand-->
-  <div class="brand"><a class="logo" href="/undefined/dashboard"><span><img class="logo-sm" alt="logo-small" src="admin/assets/images/logo-sm.png"></span><span><img class="logo-lg logo-light" alt="logo-large" src="admin/assets/images/logo-light.png"><img class="logo-lg logo-dark" alt="logo-large" src="admin/assets/images/logo-dark.png"></span></a></div>
+  <div class="brand"><a class="logo" href="/undefined/dashboard"><span><img style="width: 150px" alt="logo-small" src="admin/assets/images/T-Solution.png"></span></a></div>
   <!-- end brand-->
   <!-- start startbar-menu-->
   <div class="startbar-menu">
     <div class="startbar-collapse" id="startbarCollapse" data-simplebar="">
       <div class="d-flex align-items-start flex-column w-100">
-        <!-- Navigation-->
+        <!-- Navigation--> 
         <ul class="navbar-nav mb-auto w-100">
           <li class="menu-label pt-0 mt-0">
             <!--
@@ -268,7 +268,7 @@
         <div class="card mb-0 rounded-bottom-0">
           <div class="card-body">
             <p class="text-muted mb-0">©
-              <script>document.write(new Date().getFullYear())</script>Rizz<span class="text-muted d-none d-sm-inline-block float-end">Crafted with<i class="iconoir-heart text-danger"></i>by Mannatthemes</span>
+              <script>document.write(new Date().getFullYear())</script> T Solution<span class="text-muted d-none d-sm-inline-block float-end">Crafted with<i class="iconoir-heart text-danger"></i>by Tuan</span>
             </p>
           </div>
         </div>

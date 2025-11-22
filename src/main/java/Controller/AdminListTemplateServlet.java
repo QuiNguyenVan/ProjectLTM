@@ -45,7 +45,6 @@ public class AdminListTemplateServlet extends HttpServlet {
 			request.getRequestDispatcher("/Admin/Template/List.jsp").forward(request, response);
 			request.getRequestDispatcher("/Admin/Index.jsp").forward(request, response);
 		} else {
-			System.out.println("Controller null"); // Dòng mới
 			request.setAttribute("errorMessage", "Không thể tải danh sách template.");
 			request.getRequestDispatcher("/Home.jsp").forward(request, response);
 		}

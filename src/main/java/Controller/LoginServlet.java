@@ -26,15 +26,26 @@ public class LoginServlet extends HttpServlet {
             // Lưu user vào session
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-
-            // Chuyển sang Welcome.jsp
-            RequestDispatcher rd = request.getRequestDispatcher("Welcome.jsp");
-            rd.forward(request, response);
+            
+            String redirectURL;
+            
+            if (user.getRole() == 1) {
+				// Nếu là admin
+				redirectURL = "Admin/Index.jsp";
+			} else {
+                // Nếu là người dùng thông thường
+                redirectURL = "Welcome.jsp";
+            }
+            
+            // CHUYỂN HƯỚNG BẰNG REDIRECT (TỐT NHẤT CHO TRẠNG THÁI THÀNH CÔNG)
+            response.sendRedirect(redirectURL);
+            return;
 
         } else {
-            // Sai tài khoản
-        		response.sendRedirect("Login.jsp");
-//            response.sendRedirect("Login.jsp?error=1"); 
+            // Xử lý Sai tài khoản (Dùng FORWARD để giữ lại thông báo lỗi)
+        	request.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng.");
+            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+            rd.forward(request, response);
         }
     }
 }
