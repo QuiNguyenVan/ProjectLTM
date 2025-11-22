@@ -40,13 +40,7 @@
 <body>
 
 <%
-    // Lấy giá trị của trường 'username' đã được gửi từ form (login.jsp)
-    // request.getParameter() là phương thức quan trọng trong Servlet/JSP
     String username = request.getParameter("username");
-	System.out.println("Welcome.jsp - Username: " + username);
-    
-    // Lưu ý: Không nên hiển thị trực tiếp mật khẩu đã gửi!
-    // String password = request.getParameter("password"); 
 %>
 
 <div class="welcome-box">

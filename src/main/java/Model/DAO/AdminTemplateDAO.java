@@ -17,7 +17,7 @@ public class AdminTemplateDAO {
             conn = DBConnection.getConnection();
             if (conn == null) {
                 System.err.println("AdminTemplateDAO.getAllTemplates: Unable to obtain DB connection (null)");
-                return null; // propagate null so caller knows there was an error
+                return null; 
             }
             preparedStatement = conn.prepareStatement(SELECT_ALL_TEMPLATES);
             rs = preparedStatement.executeQuery();
@@ -28,7 +28,6 @@ public class AdminTemplateDAO {
                 int id = rs.getInt("id");
                 String name = rs.getString("templateName");
                 String content = rs.getString("content");
-                // Ánh xạ dữ liệu từ ResultSet sang Bean
                 AdminTemplate template = new AdminTemplate(id, name, content, 0, null, null); // Giả sử userId, createdAt, updatedAt không được lấy ở đây
                 templates.add(template);
             }
@@ -39,7 +38,6 @@ public class AdminTemplateDAO {
             e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
             return null;
         } finally {
-            // Close resources safely
             try { if (rs != null) rs.close(); } catch (Exception ex) { /* ignore */ }
             try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
             try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
@@ -49,7 +47,6 @@ public class AdminTemplateDAO {
     
     public boolean insertTemplate(int userId, String templateName, String content) { 
         
-        // Câu lệnh SQL phải bao gồm cột user_id
         String INSERT_TEMPLATE_SQL = "INSERT INTO template (user_id, templateName, content, created_at) VALUES (?, ?, ?, NOW())";
         
         Connection conn = null;
@@ -63,18 +60,9 @@ public class AdminTemplateDAO {
             }
             
             preparedStatement = conn.prepareStatement(INSERT_TEMPLATE_SQL);
-            
-            // 1. Ánh xạ user_id
             preparedStatement.setInt(1, userId); 
-            
-            // 2. Ánh xạ templateName
             preparedStatement.setString(2, templateName);
-            
-            // 3. Ánh xạ content
             preparedStatement.setString(3, content);
-            
-            // Lưu ý: created_at được xử lý bằng hàm MySQL NOW()
-            
             int affectedRows = preparedStatement.executeUpdate();
             return affectedRows > 0;
             
@@ -82,7 +70,6 @@ public class AdminTemplateDAO {
             e.printStackTrace(); 
             return false;
         } finally {
-            // ... (Close resources) ...
             try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
             try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
         }
@@ -97,7 +84,7 @@ public class AdminTemplateDAO {
 			conn = DBConnection.getConnection();
 			if (conn == null) {
 				System.err.println("AdminTemplateDAO.getTemplateById: Unable to obtain DB connection (null)");
-				return null; // propagate null so caller knows there was an error
+				return null;
 			}
 			preparedStatement = conn.prepareStatement(SELECT_TEMPLATE_BY_ID);
 			preparedStatement.setInt(1, templateId);
@@ -109,19 +96,17 @@ public class AdminTemplateDAO {
 				return new AdminTemplate(templateId, name, content, 0, null, null); // Giả sử userId, createdAt, updatedAt không được lấy ở đây
 			}
 		} catch (SQLException e) {
-			e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+			e.printStackTrace(); 
 			return null;
 		} finally {
-			// Close resources safely
 			try { if (rs != null) rs.close(); } catch (Exception ex) { /* ignore */ }
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
 			try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
 		}
-		return null; // Template not found
+		return null; 
 	}
     
     public boolean updateTemplateById(int templateId, String templateName, String content) {
-	    	// THAY ĐỔI SQL: Thêm updated_at = NOW()
 	    	String UPDATE_TEMPLATE_SQL = "UPDATE template SET templateName = ?, content = ?, updated_at = NOW() WHERE id = ?";
 	    	
 	    	Connection conn = null;
@@ -135,26 +120,17 @@ public class AdminTemplateDAO {
 				}
 				
 				preparedStatement = conn.prepareStatement(UPDATE_TEMPLATE_SQL);
-				
-				// 1. templateName
 				preparedStatement.setString(1, templateName);
-				
-				// 2. content
 				preparedStatement.setString(2, content);
-				
-				// updated_at = NOW() được đặt trong SQL, không cần tham số thứ 3
-				
-				// 3. templateId (WHERE clause)
-				preparedStatement.setInt(3, templateId); // Vị trí tham số thứ 3
+				preparedStatement.setInt(3, templateId); 
 								
 				int affectedRows = preparedStatement.executeUpdate();					
 				return affectedRows > 0;
 	            
 			} catch (SQLException e) {
-				e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+				e.printStackTrace(); 
 				return false;
-			} finally {					
-				// Close resources safely
+			} finally {		
 				try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
 				try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
 			}
@@ -168,17 +144,16 @@ public class AdminTemplateDAO {
 			conn = DBConnection.getConnection();
 			if (conn == null) {
 				System.err.println("AdminTemplateDAO.deleteTemplateById: Unable to obtain DB connection (null)");
-				return false; // propagate false so caller knows there was an error
+				return false;
 			}
 			preparedStatement = conn.prepareStatement(DELETE_TEMPLATE_SQL);
 			preparedStatement.setInt(1, templateId);
 			int affectedRows = preparedStatement.executeUpdate();
 			return affectedRows > 0;
 		} catch (SQLException e) {
-			e.printStackTrace(); // Xử lý lỗi kết nối hoặc truy vấn
+			e.printStackTrace(); 
 			return false;
 		} finally {
-			// Close resources safely
 			try { if (preparedStatement != null) preparedStatement.close(); } catch (Exception ex) { /* ignore */ }
 			try { if (conn != null) conn.close(); } catch (Exception ex) { /* ignore */ }
 		}

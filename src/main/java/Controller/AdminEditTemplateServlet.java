@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import Model.BO.AdminTemplateBO;
+
 @WebServlet("/AdminEditTemplateServlet")
 public class AdminEditTemplateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -15,7 +17,6 @@ public class AdminEditTemplateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// Lấy thông tin templateId từ request
 		String templateId = request.getParameter("templateId");
 		if (templateId == null || templateId.trim().isEmpty()) {
 			request.setAttribute("errorMessage", "Template ID không hợp lệ.");
@@ -30,11 +31,8 @@ public class AdminEditTemplateServlet extends HttpServlet {
 			if (template == null) {
 				request.setAttribute("errorMessage", "Không tìm thấy template.");
 			} else {
-				// Đưa template vào request để JSP có thể sử dụng
 				request.setAttribute("template", template);
 			}
-			
-			// Chuyển hướng đến trang chỉnh sửa template
 			request.getRequestDispatcher("/Admin/Template/Edit.jsp").forward(request, response);
 		} catch (NumberFormatException ex) {
 			request.setAttribute("errorMessage", "Template ID không phải là số.");
@@ -46,7 +44,6 @@ public class AdminEditTemplateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// Lấy thông tin template từ form
 		String templateId = request.getParameter("templateId");
 		String templateName = request.getParameter("templateName");
 		String content = request.getParameter("content");
@@ -56,18 +53,14 @@ public class AdminEditTemplateServlet extends HttpServlet {
 			request.getRequestDispatcher("/Admin/Template/Edit.jsp").forward(request, response);
 			return;
 		}
-		
 		try {
 			int id = Integer.parseInt(templateId);
-			// Cập nhật template trong cơ sở dữ liệu (giả sử có phương thức updateTemplate trong AdminTemplateBO)
-			Model.BO.AdminTemplateBO adminTemplateBO = new Model.BO.AdminTemplateBO();
+			AdminTemplateBO adminTemplateBO = new Model.BO.AdminTemplateBO();
 			boolean isUpdated = adminTemplateBO.updateTemplate(id, templateName, content);
 			
 			if (isUpdated) {
-				// Nếu cập nhật thành công, chuyển hướng về danh sách template
 				response.sendRedirect("AdminListTemplateServlet");
 			} else {
-				// Nếu cập nhật thất bại, hiển thị thông báo lỗi
 				request.setAttribute("errorMessage", "Không thể cập nhật template.");
 				request.getRequestDispatcher("/Admin/Template/Edit.jsp").forward(request, response);
 			}

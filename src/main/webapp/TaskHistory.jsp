@@ -264,9 +264,6 @@
             });
     }
 
-    // Thiết lập Polling: Gọi hàm fetchTaskHistory mỗi 5 giây (5000ms)
-    // Lần đầu tiên dữ liệu đã được Controller cung cấp.
-    setInterval(fetchTaskHistory, 5000); 
 
 </script>
 
