@@ -14,7 +14,10 @@ public class DBConnection {
  		{
  			Class.forName("com.mysql.cj.jdbc.Driver");
  			conn=DriverManager.getConnection(URL,username,password);
- 		}catch(Exception e) {e.getStackTrace();}
+ 		}catch(Exception e) {
+ 			// In ra stack trace để dễ debug khi có lỗi kết nối
+ 			e.printStackTrace();
+ 		}
  		return conn;
  	}
 }

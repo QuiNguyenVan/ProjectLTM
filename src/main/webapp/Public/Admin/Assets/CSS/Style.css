@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+/* ================================== */
+/* 1. CSS Variables (Biến chung)      */
+/* ================================== */
+:root {
+    --primary-color: #007bff;          /* Xanh dương chính */
+    --primary-hover: #0056b3;
+    --success-color: #28a745;
+    --success-hover: #218838;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --bg-light: #f4f7f6;               /* Nền sáng chung */
+    --text-dark: #2B2D3B;              /* Màu chữ đậm */
+    --text-muted: #555;
+    --border-color: #ced4da;
+    --table-header-bg: #F4F6F9;
+}
+
+/* ================================== */
+/* 2. Global & Body Styles            */
+/* ================================== */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-light);
+    margin: 0;
+    padding: 30px; 
+}
+
+/* ================================== */
+/* 3. Container (Chung cho cả List và Create) */
+/* ================================== */
+.container, .create-container {
+    width: 85vw;
+    background: #fff;
+    padding: 40px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================== */
+/* 4. Error Message Styles            */
+/* ================================== */
+.error-message { 
+    color: var(--danger-color);
+    font-size: 0.85em;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    display: block;
+    font-weight: bold;
+}

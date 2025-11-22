@@ -28,9 +28,17 @@
     .info-link-section a {
         color: #007bff; /* Màu riêng cho link Đăng ký */
     }
-    /* Thêm style cho thông báo lỗi */
-    .error-message { 
-        /* đã được định nghĩa trong JS, nhưng có thể thêm style nâng cao tại đây */
+    
+    /* CSS cho hộp thông báo lỗi */
+    .login-error-box {
+        color: red;
+        margin-bottom: 15px; 
+        border: 1px solid red; 
+        padding: 10px; 
+        background-color: #ffebeb;
+        border-radius: 4px;
+        font-size: 0.9em;
+        text-align: center;
     }
 </style>
 </head>
@@ -38,6 +46,20 @@
 
 <div class="form-container">
     <h2>Đăng Nhập Hệ Thống</h2>
+    
+    <%-- ----------------------------------------------------------------- --%>
+    <%-- LÓGIC HIỂN THỊ LỖI KHI SERVLET FORWARD TRỞ LẠI --%>
+    <% 
+        String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null && !errorMessage.isEmpty()) { 
+    %>
+        <div class="login-error-box">
+            <%= errorMessage %> 
+        </div>
+    <% 
+        } 
+    %>
+    <%-- ----------------------------------------------------------------- --%>
     
     <form id="loginForm" action="LoginServlet" method="post">
     
