@@ -7,9 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Servlet implementation class AdminDeleteTemplateServlet
- */
 @WebServlet("/AdminDeleteTemplateServlet")
 public class AdminDeleteTemplateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +15,6 @@ public class AdminDeleteTemplateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		// Lấy thông tin templateId từ request
 		String templateId = request.getParameter("templateId");
 		if (templateId == null || templateId.trim().isEmpty()) {
 			request.setAttribute("errorMessage", "Template ID không hợp lệ.");
@@ -34,7 +30,6 @@ public class AdminDeleteTemplateServlet extends HttpServlet {
 				request.setAttribute("errorMessage", "Không thể xóa template.");
 			}
 			
-			// Chuyển hướng về danh sách template sau khi xóa
 			response.sendRedirect("AdminListTemplateServlet");
 		} catch (NumberFormatException ex) {
 			request.setAttribute("errorMessage", "Template ID không phải là số.");

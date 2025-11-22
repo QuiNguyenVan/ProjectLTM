@@ -17,13 +17,11 @@
         .then(response => response.json())
         .then(data => {
             if(data.status === "done") {
-                // Khi xong, hiển thị kết quả
                 document.getElementById("status").innerText = "Đã kiểm tra xong!";
                 document.getElementById("result").innerHTML =
                     "<p>Tỉ lệ giống: " + data.similarityPercent + "%</p>" +
                     "<p>Mẫu giống nhất: " + data.matchedTemplate + "</p>";
             } else {
-                // Nếu chưa xong, tiếp tục polling
                 setTimeout(checkStatus, 2000);
             }
         })
