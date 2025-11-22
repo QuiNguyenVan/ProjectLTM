@@ -10,6 +10,7 @@ import Model.BO.PlagiarismBO;
 import Model.BO.TaskBO;
 import Model.Bean.Result;
 import Model.Bean.User;
+import Worker.PlagiarismWorker;
 
 @WebServlet("/CheckPlagiarismServlet")
 @MultipartConfig
@@ -21,7 +22,8 @@ public class CheckPlagiarismServlet extends HttpServlet {
         String fileName = (filePart != null && filePart.getSize() > 0) ? filePart.getSubmittedFileName() : null;
         String textInput = request.getParameter("content");
         
-        TaskBO taskBO = new TaskBO();
+        PlagiarismWorker worker = (PlagiarismWorker) getServletContext().getAttribute("plagiarismWorker");
+        TaskBO taskBO = new TaskBO(worker);
         int taskId = taskBO.createTask(userId,fileName,filePart, textInput);
 
         response.sendRedirect("Processing.jsp?taskId=" + taskId);

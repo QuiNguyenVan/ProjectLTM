@@ -8,11 +8,17 @@ import java.util.List;
 import Model.Bean.Task;
 import Model.DAO.PlagiarismDAO;
 import Model.DAO.TaskDAO;
+import Worker.PlagiarismWorker;
 import jakarta.servlet.http.Part;
 
 public class TaskBO {
-	private TaskDAO dao = new TaskDAO();
-
+	private TaskDAO taskDao = new TaskDAO();
+	private PlagiarismWorker worker;
+	public TaskBO(PlagiarismWorker worker) {
+        this.worker = worker;
+    }
+	public TaskBO() {
+    }
     public int createTask(int userId,String fileName,Part filePart, String textInput) throws IOException {
         String content = "";
 
@@ -24,24 +30,28 @@ public class TaskBO {
             content = textInput;
             fileName =null;
         }
-        System.out.print(content);
         Task task = new Task();
         task.setUserId(userId);
         task.setFileName(fileName);
         task.setFileContent(content);
         task.setStatus("processing");
-
-        return dao.createTask(task); 
+        int taskId=taskDao.createTask(task);
+        task.setTaskId(taskId);
+        
+        if (worker != null) {
+            worker.addTask(task);
+        }
+        return taskId;
     }
     public List<Task> getPendingTasks() {
-        return dao.getPendingTasks();
+        return taskDao.getPendingTasks();
     }
     public void updateTaskStatus(int taskId, String status) {
-        dao.updateTaskStatus(taskId, status);
+        taskDao.updateTaskStatus(taskId, status);
     }
     public String getTaskStatus(int taskId)
     {
-    	return dao.getTaskById(taskId).getStatus();
+    	return taskDao.getTaskById(taskId).getStatus();
     }
     
 }
